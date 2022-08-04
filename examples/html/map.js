@@ -1,4 +1,4 @@
-import AmapUtils from '../../dist/index.es.js'
+import AmapUtils from './dist/index.es.js'
 
 const amapUtils = new AmapUtils({
     key: "599dfe6bbe92b35d34d4e3d3f40aac6b",             // 申请好的Web端开发者Key，首次调用 load 时必填
