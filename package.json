@@ -1,0 +1,45 @@
+{
+  "name": "@maybecode/amap-utils",
+  "version": "1.0.0",
+  "description": "基于高德地图JS-API二次封装的工具库",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev rollup -c ./rollup.config.js  --watch",
+    "build": "cross-env NODE_ENV=prod  rollup -c ./rollup.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "maybe",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@types/lodash": "^4.14.182",
+    "cross-env": "^7.0.3",
+    "rollup": "^2.77.2",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-serve": "^2.0.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@turf/helpers": "^6.5.0",
+    "@turf/line-intersect": "^6.5.0",
+    "lodash": "^4.17.21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/null_639_5368/amap-utils.git"
+  },
+  "homepage": "https://gitee.com/null_639_5368/amap-utils"
+}
