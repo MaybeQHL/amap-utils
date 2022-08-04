@@ -12,9 +12,18 @@
 npm i @maybecode/amap-utils
 ```
 
+### Demo
+
+[Demo](http://null_639_5368.gitee.io/amap-utils)
+
 ### 使用
 
-具体使用请查看[Demo](./examples/html/index.html)
+
+
+
+
+具体使用请查看: [源码](./examples/html/map.js)
+
 
 ```js
 import AmapUtils from '@maybecode/amap-utils'
