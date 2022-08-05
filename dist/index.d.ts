@@ -12,6 +12,14 @@ declare enum VectorTypes {
     Ellipse = "Ellipse",
     Rectangle = "Rectangle"
 }
+interface Editor {
+    open: () => void;
+    close: () => void;
+    on: (name: string, func: (e: any) => void) => void;
+}
+/**
+ * @remark 所有静态方法AmapUtils.func(),不依赖map和Amap的均为静态方法
+ */
 declare class AmapUtils {
     map: any;
     AMap: any;
@@ -66,7 +74,7 @@ declare class AmapUtils {
      * @param opts 额外配置 同高德Editor方法
      * @returns
      */
-    createVectorEditor(type: VectorTypes, com: any, opts: any): any;
+    createVectorEditor(type: VectorTypes, com: any, opts: any): Editor;
     /**
      * 创建矢量图形
      * @param type 类型
@@ -92,5 +100,23 @@ declare class AmapUtils {
      * @returns
      */
     static getPath(obj: any): any;
+    /**
+     * 获取编辑器组件对象
+     * @param editor
+     * @returns
+     */
+    getTarget(editor: any): any;
+    /**
+     * 打开编辑器
+     * @param editor
+     * @returns
+     */
+    openEditor(editor: any): any;
+    /**
+     * 关闭编辑器
+     * @param editor
+     * @returns
+     */
+    closeEditor(editor: any): boolean;
 }
 export default AmapUtils;

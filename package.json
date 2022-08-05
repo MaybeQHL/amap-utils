@@ -1,6 +1,6 @@
 {
   "name": "@maybecode/amap-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "基于高德地图JS-API二次封装的工具库",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",

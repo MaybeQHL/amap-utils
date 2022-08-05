@@ -1,4 +1,5 @@
 import AmapUtils from './dist/index.es.js'
+// import AmapUtils from '../../dist/index.es.js'
 
 const amapUtils = new AmapUtils({
     key: "599dfe6bbe92b35d34d4e3d3f40aac6b",             // 申请好的Web端开发者Key，首次调用 load 时必填
@@ -20,8 +21,8 @@ console.log(amapUtils)
 
 
 const editors = {
-    Polygon: null,
-    Circle: null
+    polygon: null,
+    circle: null
 }
 
 
@@ -43,7 +44,7 @@ const init = async () => {
                 [116.389846, 39.891365]
             ],
         })
-        editors.polygon = amapUtils.createVectorEditor('Polygon', vec)
+        editors.polygon = amapUtils.createVectorEditor('polygon', vec)
     }
     defaultRender();
 
@@ -55,7 +56,9 @@ const init = async () => {
     document.querySelector('#draw').addEventListener('click', async () => {
 
         const type = getSelectVal()
+
         if (editors[type]) return;
+
         const mouseTool = amapUtils.mouseTool();
 
         // 画具体图形
@@ -67,8 +70,8 @@ const init = async () => {
             const obj = e.obj;
 
             if (type == 'polygon') {
-                let check = AmapUtils.isTruePolygon(obj);
-                console.log('验证多边形合法结果：', check)
+                // let check = AmapUtils.isTruePolygon(obj);
+                // console.log('验证多边形合法结果：', check)
 
                 editors.polygon = amapUtils.createVectorEditor('polygon', e.obj);
                 editors.polygon.on('end', (e) => {
@@ -90,16 +93,16 @@ const init = async () => {
         Object.keys(editors).forEach(key => {
             let type = getSelectVal()
             if (editors[key]) {
-                // 获取组件对象
-                const target = editors[key].getTarget();
+                // 获取编辑器组件对象
+                const target = amapUtils.getTarget(editors[key]);
                 if (type == 'polygon') {
                     const check = AmapUtils.isTruePolygon(target);
                     const msg = `验证多边形合法结果${check}`
                     console.log(msg)
                     alert(msg)
-                    check && editors[key].close()
+                    check && amapUtils.closeEditor(editors[key])
                 } else {
-                    editors[key].close()
+                    amapUtils.closeEditor(editors[key])
                 }
 
             }
@@ -110,7 +113,7 @@ const init = async () => {
         Object.keys(editors).forEach(key => {
             let type = getSelectVal()
             if (editors[key]) {
-                editors[key].open()
+                amapUtils.openEditor(editors[key])
             }
         })
     })
@@ -118,7 +121,8 @@ const init = async () => {
     document.querySelector('#clear').addEventListener('click', () => {
         map.clearMap();
         Object.keys(editors).forEach(key => {
-            editors[key] && editors[key].close()
+            editors[key] && amapUtils.closeEditor(editors[key])
+            // 重置为空对象
             editors[key] = null;
         })
     })

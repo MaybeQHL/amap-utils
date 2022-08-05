@@ -3872,6 +3872,9 @@ var VectorTypes;
     VectorTypes["Ellipse"] = "Ellipse";
     VectorTypes["Rectangle"] = "Rectangle";
 })(VectorTypes || (VectorTypes = {}));
+/**
+ * @remark 所有静态方法AmapUtils.func(),不依赖map和Amap的均为静态方法
+ */
 class AmapUtils {
     map;
     AMap;
@@ -4022,6 +4025,43 @@ class AmapUtils {
      */
     static getPath(obj) {
         return this.objArrToArr(obj.getPath());
+    }
+    /**
+     * 获取编辑器组件对象
+     * @param editor
+     * @returns
+     */
+    getTarget(editor) {
+        if (!editor) {
+            console.error('请传入编辑器');
+            return false;
+        }
+        return editor.getTarget();
+    }
+    /**
+     * 打开编辑器
+     * @param editor
+     * @returns
+     */
+    openEditor(editor) {
+        if (!editor) {
+            console.error('请传入编辑器');
+            return false;
+        }
+        return editor.open();
+    }
+    /**
+     * 关闭编辑器
+     * @param editor
+     * @returns
+     */
+    closeEditor(editor) {
+        if (!editor) {
+            console.error('请传入编辑器');
+            return false;
+        }
+        editor.close();
+        return;
     }
 }
 

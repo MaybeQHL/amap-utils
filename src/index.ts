@@ -20,6 +20,15 @@ enum VectorTypes {
     BezierCurve = "BezierCurve", Ellipse = 'Ellipse', Rectangle = 'Rectangle'
 };
 
+interface Editor {
+    open: () => void,
+    close: () => void
+    on: (name: string, func: (e) => void) => void
+}
+
+/**
+ * @remark 所有静态方法AmapUtils.func(),不依赖map和Amap的均为静态方法
+ */
 class AmapUtils {
 
     map: any;
@@ -126,7 +135,7 @@ class AmapUtils {
      * @returns 
      */
     createVectorEditor(type: VectorTypes, com: any, opts: any) {
-        let editor;
+        let editor: Editor;
 
         type = type[0].toUpperCase() + type.substring(1) + 'Editor' as any;
 
@@ -188,6 +197,46 @@ class AmapUtils {
      */
     static getPath(obj) {
         return this.objArrToArr(obj.getPath())
+    }
+
+    /**
+     * 获取编辑器组件对象
+     * @param editor 
+     * @returns 
+     */
+    getTarget(editor) {
+        if (!editor) {
+            console.error('请传入编辑器')
+            return false
+        };
+        return editor.getTarget();
+    }
+
+    /**
+     * 打开编辑器
+     * @param editor 
+     * @returns 
+     */
+    openEditor(editor) {
+        if (!editor) {
+            console.error('请传入编辑器')
+            return false
+        };
+        return editor.open()
+    }
+
+    /**
+     * 关闭编辑器
+     * @param editor 
+     * @returns 
+     */
+    closeEditor(editor) {
+        if (!editor) {
+            console.error('请传入编辑器')
+            return false
+        };
+        editor.close()
+        return;
     }
 }
 
